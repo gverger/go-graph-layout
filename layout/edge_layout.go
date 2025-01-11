@@ -3,14 +3,14 @@ package layout
 // DirectEdge is straight line from center of one node to another.
 func DirectEdge(from, to Node) Edge {
 	return Edge{
-		Path: [][2]int{
+		Path: []Position{
 			{
-				from.X + (from.W / 2),
-				from.Y + (from.H / 2),
+				X: from.X + (from.W / 2),
+				Y: from.Y + (from.H / 2),
 			},
 			{
-				to.X + (to.W / 2),
-				to.Y + (to.H / 2),
+				X: to.X + (to.W / 2),
+				Y: to.Y + (to.H / 2),
 			},
 		},
 	}

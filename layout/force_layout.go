@@ -41,10 +41,9 @@ func (l ForceGraphLayout) UpdateGraphLayout(g Graph) {
 			x := g.Nodes[i].X + int((f[i][0] * l.Delta))
 			y := g.Nodes[i].Y + int((f[i][1] * l.Delta))
 			g.Nodes[i] = Node{
-				X: x,
-				Y: y,
-				W:  g.Nodes[i].W,
-				H:  g.Nodes[i].H,
+				Position: Position{X: x, Y: y},
+				W:        g.Nodes[i].W,
+				H:        g.Nodes[i].H,
 			}
 		}
 	}

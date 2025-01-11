@@ -11,8 +11,10 @@ func (l *ScalerLayout) UpdateGraphLayout(g Graph) {
 		y := float64(g.Nodes[i].Y)
 
 		g.Nodes[i] = Node{
-			X: int(x * l.Scale),
-			Y: int(y * l.Scale),
+			Position: Position{
+				X: int(x * l.Scale),
+				Y: int(y * l.Scale),
+			},
 			W: g.Nodes[i].W,
 			H: g.Nodes[i].H,
 		}
@@ -20,15 +22,16 @@ func (l *ScalerLayout) UpdateGraphLayout(g Graph) {
 
 	// can not recompute edge layout as some paths are complex and not direct
 	for e := range g.Edges {
-		for p, xy := range g.Edges[e].Path {
-			x := float64(xy[0])
-			y := float64(xy[1])
-			g.Edges[e].Path[p] = [2]int{int(x * l.Scale), int(y * l.Scale)}
+		for p, pos := range g.Edges[e].Path {
+			g.Edges[e].Path[p] = Position{
+				X: int(float64(pos.X) * l.Scale),
+				Y: int(float64(pos.Y) * l.Scale),
+			}
 		}
 
 		// if edge was not previously set adding at least two nodes for start and end
 		if len(g.Edges[e].Path) == 0 {
-			g.Edges[e] = Edge{Path: make([][2]int, 2)}
+			g.Edges[e] = Edge{Path: make([]Position, 2)}
 		}
 
 		// end and start should use center coordinates of nodes

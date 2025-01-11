@@ -56,12 +56,11 @@ func updateGraphByGonumLayout(g Graph, gnLayout gnLayoutGetter, scaleX float64, 
 	for nodeID := range g.Nodes {
 		gnNode := gnLayout.Coord2(gonumNodeID(nodeID))
 
-		x := gnNode.X * w / gnw
-		y := gnNode.Y * h / gnh
-
 		g.Nodes[nodeID] = Node{
-			X: int(x),
-			Y: int(y),
+			Position: Position{
+				X: int(gnNode.X * w / gnw),
+				Y: int(gnNode.Y * h / gnh),
+			},
 			W: g.Nodes[nodeID].W,
 			H: g.Nodes[nodeID].H,
 		}

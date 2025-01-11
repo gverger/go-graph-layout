@@ -59,8 +59,12 @@ func writeSVG(gd graph.Graph, gl layout.Graph) string {
 	}
 
 	for e, edata := range gl.Edges {
+		path := make([][2]int, 0, len(edata.Path))
+		for _, p := range edata.Path {
+			path = append(path, [2]int{p.X, p.Y})
+		}
 		graph.Edges[e] = svg.Edge{
-			Path: edata.Path,
+			Path: path,
 		}
 	}
 

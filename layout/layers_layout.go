@@ -20,7 +20,7 @@ type SugiyamaLayersStrategyGraphLayout struct {
 	OrderingAssigner                   func(g Graph, lg LayeredGraph)
 	NodesHorizontalCoordinatesAssigner NodesHorizontalCoordinatesAssigner
 	NodesVerticalCoordinatesAssigner   NodesVerticalCoordinatesAssigner
-	EdgePathAssigner                   func(g Graph, lg LayeredGraph, allNodesXY map[uint64][2]int)
+	EdgePathAssigner                   func(g Graph, lg LayeredGraph, allNodesXY map[uint64]Position)
 }
 
 // UpdateGraphLayout breaks down layered graph construction in phases.
@@ -38,9 +38,9 @@ func (l SugiyamaLayersStrategyGraphLayout) UpdateGraphLayout(g Graph) {
 	nodeY := l.NodesVerticalCoordinatesAssigner.NodesVerticalCoordinates(g, lg)
 
 	// real and fake node coordinates
-	allNodesXY := make(map[uint64][2]int, len(g.Nodes))
+	allNodesXY := make(map[uint64]Position, len(g.Nodes))
 	for n := range lg.NodeYX {
-		allNodesXY[n] = [2]int{nodeX[n], nodeY[n]}
+		allNodesXY[n] = Position{X: nodeX[n], Y: nodeY[n]}
 	}
 
 	// export coordinates for edges
@@ -49,8 +49,10 @@ func (l SugiyamaLayersStrategyGraphLayout) UpdateGraphLayout(g Graph) {
 	// export coordinates to real nodes
 	for n, node := range g.Nodes {
 		g.Nodes[n] = Node{
-			X: nodeX[n] - node.W/2,
-			Y: nodeY[n] - node.H/2,
+			Position: Position{
+				X: nodeX[n] - node.W/2,
+				Y: nodeY[n] - node.H/2,
+			},
 			W: node.W,
 			H: node.H,
 		}
