@@ -38,10 +38,11 @@ func (l ForceGraphLayout) UpdateGraphLayout(g Graph) {
 
 		// move by delta
 		for i := range g.Nodes {
-			x := g.Nodes[i].XY[0] + int((f[i][0] * l.Delta))
-			y := g.Nodes[i].XY[1] + int((f[i][1] * l.Delta))
+			x := g.Nodes[i].X + int((f[i][0] * l.Delta))
+			y := g.Nodes[i].Y + int((f[i][1] * l.Delta))
 			g.Nodes[i] = Node{
-				XY: [2]int{x, y},
+				X: x,
+				Y: y,
 				W:  g.Nodes[i].W,
 				H:  g.Nodes[i].H,
 			}
@@ -74,12 +75,12 @@ func (l SpringForce) UpdateForce(g Graph, f map[uint64][2]float64) {
 			}
 		}
 
-		xi := float64(g.Nodes[i].XY[0])
-		yi := float64(g.Nodes[i].XY[1])
+		xi := float64(g.Nodes[i].X)
+		yi := float64(g.Nodes[i].Y)
 
 		for _, j := range js {
-			xj := float64(g.Nodes[j].XY[0])
-			yj := float64(g.Nodes[j].XY[1])
+			xj := float64(g.Nodes[j].X)
+			yj := float64(g.Nodes[j].Y)
 
 			d := math.Hypot(xi-xj, yi-yj)
 
@@ -119,12 +120,12 @@ func (l GravityForce) UpdateForce(g Graph, f map[uint64][2]float64) {
 			}
 		}
 
-		xi := float64(g.Nodes[i].XY[0])
-		yi := float64(g.Nodes[i].XY[1])
+		xi := float64(g.Nodes[i].X)
+		yi := float64(g.Nodes[i].Y)
 
 		for _, j := range js {
-			xj := float64(g.Nodes[j].XY[0])
-			yj := float64(g.Nodes[j].XY[1])
+			xj := float64(g.Nodes[j].X)
+			yj := float64(g.Nodes[j].Y)
 
 			d := math.Hypot(xi-xj, yi-yj)
 

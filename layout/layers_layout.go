@@ -49,9 +49,10 @@ func (l SugiyamaLayersStrategyGraphLayout) UpdateGraphLayout(g Graph) {
 	// export coordinates to real nodes
 	for n, node := range g.Nodes {
 		g.Nodes[n] = Node{
-			XY: [2]int{nodeX[n] - node.W/2, nodeY[n] - node.H/2},
-			W:  node.W,
-			H:  node.H,
+			X: nodeX[n] - node.W/2,
+			Y: nodeY[n] - node.H/2,
+			W: node.W,
+			H: node.H,
 		}
 	}
 

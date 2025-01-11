@@ -18,7 +18,8 @@ const (
 // Can render contents as table.
 type Node struct {
 	ID       string // used to make DOM IDs
-	XY       [2]int // lowest X and Y coordinate of node box
+	X int
+	Y int
 	Title    string
 	NodeData map[string]interface{}
 }
@@ -44,8 +45,8 @@ func (n Node) Render() string {
 			</foreignObject>
 		</g>
 		`,
-		n.XY[0],
-		n.XY[1],
+		n.X,
+		n.Y,
 		n.Width()+padding,
 		n.Height()+padding,
 		NodeTitle{ID: fmt.Sprintf("svg:graph:node:title:%s", n.ID), Title: n.Title, FontSize: nodeFontSize}.Render(),

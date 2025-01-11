@@ -51,7 +51,8 @@ func writeSVG(gd graph.Graph, gl layout.Graph) string {
 	for id, node := range gd.Nodes {
 		graph.Nodes[id] = svg.Node{
 			ID:       fmt.Sprintf("%d", id),
-			XY:       gl.Nodes[id].XY,
+			X:        gl.Nodes[id].X,
+			Y:        gl.Nodes[id].Y,
 			Title:    node.ID(),
 			NodeData: node,
 		}

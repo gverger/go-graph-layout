@@ -60,9 +60,10 @@ func updateGraphByGonumLayout(g Graph, gnLayout gnLayoutGetter, scaleX float64, 
 		y := gnNode.Y * h / gnh
 
 		g.Nodes[nodeID] = Node{
-			XY: [2]int{int(x), int(y)},
-			W:  g.Nodes[nodeID].W,
-			H:  g.Nodes[nodeID].H,
+			X: int(x),
+			Y: int(y),
+			W: g.Nodes[nodeID].W,
+			H: g.Nodes[nodeID].H,
 		}
 	}
 }

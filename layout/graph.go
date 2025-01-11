@@ -8,14 +8,15 @@ type Graph struct {
 
 // Node is how to position node and its dimensions
 type Node struct {
-	XY [2]int // smallest x,y corner
+	X  int
+	Y  int
 	W  int
 	H  int
 }
 
 func (n Node) CenterXY() [2]int {
-	x := n.XY[0] + n.W/2
-	y := n.XY[1] + n.H/2
+	x := n.X + n.W/2
+	y := n.Y + n.H/2
 	return [2]int{x, y}
 }
 
@@ -74,8 +75,8 @@ func (g Graph) TotalNodesHeight() int {
 // Does not consider edges.
 func (g Graph) BoundingBox() (minx, miny, maxx, maxy int) {
 	for _, node := range g.Nodes {
-		nx := node.XY[0]
-		ny := node.XY[1]
+		nx := node.X
+		ny := node.Y
 
 		if nx < minx {
 			minx = nx

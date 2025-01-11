@@ -7,13 +7,14 @@ type ScalerLayout struct {
 
 func (l *ScalerLayout) UpdateGraphLayout(g Graph) {
 	for i := range g.Nodes {
-		x := float64(g.Nodes[i].XY[0])
-		y := float64(g.Nodes[i].XY[1])
+		x := float64(g.Nodes[i].X)
+		y := float64(g.Nodes[i].Y)
 
 		g.Nodes[i] = Node{
-			XY: [2]int{int(x * l.Scale), int(y * l.Scale)},
-			W:  g.Nodes[i].W,
-			H:  g.Nodes[i].H,
+			X: int(x * l.Scale),
+			Y: int(y * l.Scale),
+			W: g.Nodes[i].W,
+			H: g.Nodes[i].H,
 		}
 	}
 
