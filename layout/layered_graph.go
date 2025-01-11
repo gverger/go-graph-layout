@@ -6,37 +6,52 @@ import (
 	"strings"
 )
 
+type LayerPosition struct {
+	Layer int // Layer index: is the root
+	Order int // Order in the layer
+}
+
+func (p LayerPosition) IsLeftOf(other LayerPosition) bool {
+	if p.Layer != other.Layer {
+		panic(fmt.Sprintf("positions not on same layer: %+v < %+v", p, other))
+	}
+
+	return p.Order < other.Order
+}
+
 // LayeredGraph is graph with dummy nodes such that there is no long edges.
 // Short edge is between nodes in Layers next to each other.
 // Long edge is between nodes in 1+ Layers between each other.
 // Segment is either a short edge or a long edge.
 // Top layer has lowest layer number.
 type LayeredGraph struct {
-	Segments map[[2]uint64]bool     // segment is an edge in layered graph, can be real edge or piece of fake edge
-	Dummy    map[uint64]bool        // fake nodes
-	NodeYX   map[uint64][2]int      // node -> {layer, ordering in layer}
-	Edges    map[[2]uint64][]uint64 // real long/short edge -> {real, fake, fake, fake, real} nodes
+	Segments     map[[2]uint64]bool       // segment is an edge in layered graph, can be real edge or piece of fake edge
+	Dummy        map[uint64]bool          // fake nodes
+	NodePosition map[uint64]LayerPosition // node -> {layer, ordering in layer}
+	Edges        map[[2]uint64][]uint64   // real long/short edge -> {real, fake, fake, fake, real} nodes
 }
 
 func (g LayeredGraph) Layers() [][]uint64 {
-	maxY := 0
-	for _, yx := range g.NodeYX {
-		if yx[0] > maxY {
-			maxY = yx[0]
+	maxLayer := 0
+	for _, position := range g.NodePosition {
+		if position.Layer > maxLayer {
+			maxLayer = position.Layer
 		}
 	}
 
-	layers := make([][]uint64, maxY+1)
-	for y := 0; y < len(layers); y++ {
+	layers := make([][]uint64, maxLayer+1)
+	for layerIdx := 0; layerIdx < len(layers); layerIdx++ {
 		// collect to layer
-		for node, yx := range g.NodeYX {
-			if yx[0] == y {
-				layers[y] = append(layers[y], node)
+		for node, position := range g.NodePosition {
+			if position.Layer == layerIdx {
+				layers[layerIdx] = append(layers[layerIdx], node)
 			}
 		}
 
 		// sort within layer
-		sort.Slice(layers[y], func(i, j int) bool { return g.NodeYX[layers[y][i]][1] < g.NodeYX[layers[y][j]][1] })
+		sort.Slice(layers[layerIdx], func(i, j int) bool {
+			return g.NodePosition[layers[layerIdx][i]].IsLeftOf(g.NodePosition[layers[layerIdx][j]])
+		})
 	}
 
 	return layers
@@ -44,8 +59,8 @@ func (g LayeredGraph) Layers() [][]uint64 {
 
 func (g LayeredGraph) Validate() error {
 	for e := range g.Segments {
-		from := g.NodeYX[e[0]][0]
-		to := g.NodeYX[e[1]][0]
+		from := g.NodePosition[e[0]].Layer
+		to := g.NodePosition[e[1]].Layer
 		if from >= to {
 			return fmt.Errorf("edge(%v) is wrong direction, got from level(%d) to level(%d)", e, from, to)
 		}
@@ -56,7 +71,7 @@ func (g LayeredGraph) Validate() error {
 func (g LayeredGraph) String() string {
 	out := ""
 
-	out += fmt.Sprintf("fake nodes: %v\n", g.Dummy)
+	out += fmt.Sprintf("fake nodes: %+v\n", g.Dummy)
 
 	segments := []string{}
 	for e := range g.Segments {
@@ -86,7 +101,7 @@ func (g LayeredGraph) UpperNeighbors(node uint64) []uint64 {
 	var nodes []uint64
 	for e := range g.Segments {
 		if e[1] == node {
-			if g.NodeYX[e[0]][0] == (g.NodeYX[e[1]][0] - 1) {
+			if g.NodePosition[e[0]].Layer == (g.NodePosition[e[1]].Layer - 1) {
 				nodes = append(nodes, e[0])
 			}
 		}
@@ -99,7 +114,7 @@ func (g LayeredGraph) LowerNeighbors(node uint64) []uint64 {
 	var nodes []uint64
 	for e := range g.Segments {
 		if e[0] == node {
-			if g.NodeYX[e[0]][0] == (g.NodeYX[e[1]][0] - 1) {
+			if g.NodePosition[e[0]].Layer == (g.NodePosition[e[1]].Layer - 1) {
 				nodes = append(nodes, e[0])
 			}
 		}

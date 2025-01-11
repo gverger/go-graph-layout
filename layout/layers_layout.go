@@ -39,7 +39,7 @@ func (l SugiyamaLayersStrategyGraphLayout) UpdateGraphLayout(g Graph) {
 
 	// real and fake node coordinates
 	allNodesXY := make(map[uint64]Position, len(g.Nodes))
-	for n := range lg.NodeYX {
+	for n := range lg.NodePosition {
 		allNodesXY[n] = Position{X: nodeX[n], Y: nodeY[n]}
 	}
 

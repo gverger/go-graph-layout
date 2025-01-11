@@ -31,11 +31,11 @@ func computeOrderedNeighbors(g LayeredGraph) Neighbors {
 		n.Up[e[1]] = append(n.Up[e[1]], e[0])
 	}
 	for _, d := range n.Down {
-		sort.Slice(d, func(i, j int) bool { return g.NodeYX[d[i]][1] < g.NodeYX[d[j]][1] })
+		sort.Slice(d, func(i, j int) bool { return g.NodePosition[d[i]].IsLeftOf(g.NodePosition[d[j]]) })
 	}
 
 	for _, d := range n.Up {
-		sort.Slice(d, func(i, j int) bool { return g.NodeYX[d[i]][1] < g.NodeYX[d[j]][1] })
+		sort.Slice(d, func(i, j int) bool { return g.NodePosition[d[i]].IsLeftOf(g.NodePosition[d[j]]) })
 	}
 
 	return n
@@ -75,9 +75,9 @@ func (s BrandesKopfLayersNodesHorizontalAssigner) NodesHorizontalCoordinates(_ G
 	shiftBL := best.minX - resBL.minX
 	shiftBR := best.maxX - resBR.maxX
 
-	x := make(map[uint64]int, len(g.NodeYX))
+	x := make(map[uint64]int, len(g.NodePosition))
 	place := make([]int, 4)
-	for n := range g.NodeYX {
+	for n := range g.NodePosition {
 		place[0] = resTL.x[n] + shiftTL
 		place[1] = resTR.x[n] + shiftTR
 		place[2] = resBL.x[n] + shiftBL
@@ -139,7 +139,7 @@ func preprocessing(g LayeredGraph, n Neighbors) (typeOneSegments map[[2]uint64]b
 			if (l1 == (len(nextLayer) - 1)) || upperNeighborInnerSegment != 0 {
 				k1 := len(layers[i]) - 1
 				if upperNeighborInnerSegment != 0 {
-					k1 = g.NodeYX[upperNeighborInnerSegment][1]
+					k1 = g.NodePosition[upperNeighborInnerSegment].Order
 				}
 				for l <= l1 {
 					for k, u := range n.Up[nextLayer[l]] {
@@ -171,10 +171,10 @@ type TopLeft struct{}
 // Blocks are stored as cyclicly linked lists, each node has reference to its lower aligned neighbor and lowest refers to topmost.
 // Each node has additional reference to root of its block.
 func (s TopLeft) verticalAlignment(g LayeredGraph, typeOneSegments map[[2]uint64]bool, n Neighbors) (root map[uint64]uint64, align map[uint64]uint64) {
-	root = make(map[uint64]uint64, len(g.NodeYX))
-	align = make(map[uint64]uint64, len(g.NodeYX))
+	root = make(map[uint64]uint64, len(g.NodePosition))
+	align = make(map[uint64]uint64, len(g.NodePosition))
 
-	for v := range g.NodeYX {
+	for v := range g.NodePosition {
 		root[v] = v
 		align[v] = v
 	}
@@ -188,11 +188,11 @@ func (s TopLeft) verticalAlignment(g LayeredGraph, typeOneSegments map[[2]uint64
 				for m := (d - 1) / 2; m <= (d+1)/2 && m < len(upNeighbors); m++ {
 					if align[v] == v {
 						u := upNeighbors[m]
-						if !typeOneSegments[[2]uint64{u, v}] && r < g.NodeYX[u][1] {
+						if !typeOneSegments[[2]uint64{u, v}] && r < g.NodePosition[u].Order {
 							align[u] = v
 							root[v] = root[u]
 							align[v] = root[v]
-							r = g.NodeYX[u][1]
+							r = g.NodePosition[u].Order
 						}
 					}
 				}
@@ -210,8 +210,8 @@ func (s TopLeft) placeBlock(g LayeredGraph, x map[uint64]int, root map[uint64]ui
 		flag := true
 		w := v
 		for ; flag; flag = v != w {
-			if g.NodeYX[w][1] > 0 {
-				u := root[layers[g.NodeYX[w][0]][g.NodeYX[w][1]-1]]
+			if g.NodePosition[w].Order > 0 {
+				u := root[layers[g.NodePosition[w].Layer][g.NodePosition[w].Order-1]]
 				s.placeBlock(g, x, root, align, sink, shift, delta, u, layers)
 				if sink[v] == v {
 					sink[v] = sink[u]
@@ -251,14 +251,14 @@ func (s TopLeft) horizontalCompaction(g LayeredGraph, root map[uint64]uint64, al
 	shift := map[uint64]int{}
 	x = map[uint64]int{}
 
-	for v := range g.NodeYX {
+	for v := range g.NodePosition {
 		sink[v] = v
 		shift[v] = math.MaxInt
 	}
 
 	layers := g.Layers()
 	// root coordinates relative to sink
-	for v := range g.NodeYX {
+	for v := range g.NodePosition {
 		if root[v] == v {
 			s.placeBlock(g, x, root, align, sink, shift, delta, v, layers)
 		}
@@ -280,15 +280,15 @@ func (s TopLeft) horizontalCompaction(g LayeredGraph, root map[uint64]uint64, al
 				for align[v] != root[v] {
 					v = align[v]
 					j++
-					if g.NodeYX[v][1] > 0 {
-						u := layers[g.NodeYX[v][0]][g.NodeYX[v][1]-1]
+					if g.NodePosition[v].Order > 0 {
+						u := layers[g.NodePosition[v].Layer][g.NodePosition[v].Order-1]
 						shifted := shift[sink[v]] + x[v] - (x[u] + delta)
 						if shifted < shift[sink[u]] {
 							shift[sink[u]] = shifted
 						}
 					}
 				}
-				k = g.NodeYX[v][1] + 1
+				k = g.NodePosition[v].Order + 1
 
 				if k > len(layers[j])-1 || sink[v] != sink[layers[j][k]] {
 					break
@@ -298,7 +298,7 @@ func (s TopLeft) horizontalCompaction(g LayeredGraph, root map[uint64]uint64, al
 	}
 
 	// absolute coordinates
-	for v := range g.NodeYX {
+	for v := range g.NodePosition {
 		x[v] += shift[sink[v]]
 	}
 
@@ -313,10 +313,10 @@ type TopRight struct{}
 // Blocks are stored as cyclicly linked lists, each node has reference to its lower aligned neighbor and lowest refers to topmost.
 // Each node has additional reference to root of its block.
 func (s TopRight) verticalAlignment(g LayeredGraph, typeOneSegments map[[2]uint64]bool, n Neighbors) (root map[uint64]uint64, align map[uint64]uint64) {
-	root = make(map[uint64]uint64, len(g.NodeYX))
-	align = make(map[uint64]uint64, len(g.NodeYX))
+	root = make(map[uint64]uint64, len(g.NodePosition))
+	align = make(map[uint64]uint64, len(g.NodePosition))
 
-	for v := range g.NodeYX {
+	for v := range g.NodePosition {
 		root[v] = v
 		align[v] = v
 	}
@@ -335,11 +335,11 @@ func (s TopRight) verticalAlignment(g LayeredGraph, typeOneSegments map[[2]uint6
 				for m := first; m >= (d-1)/2; m-- {
 					if align[v] == v {
 						u := upNeighbors[m]
-						if !typeOneSegments[[2]uint64{u, v}] && r > g.NodeYX[u][1] {
+						if !typeOneSegments[[2]uint64{u, v}] && r > g.NodePosition[u].Order {
 							align[u] = v
 							root[v] = root[u]
 							align[v] = root[v]
-							r = g.NodeYX[u][1]
+							r = g.NodePosition[u].Order
 						}
 					}
 				}
@@ -357,8 +357,8 @@ func (s TopRight) placeBlock(g LayeredGraph, x map[uint64]int, root map[uint64]u
 		flag := true
 		w := v
 		for ; flag; flag = v != w {
-			if g.NodeYX[w][1] < len(layers[g.NodeYX[w][0]])-1 {
-				u := root[layers[g.NodeYX[w][0]][g.NodeYX[w][1]+1]]
+			if g.NodePosition[w].Order < len(layers[g.NodePosition[w].Layer])-1 {
+				u := root[layers[g.NodePosition[w].Layer][g.NodePosition[w].Order+1]]
 				s.placeBlock(g, x, root, align, sink, shift, delta, u, layers)
 				if sink[v] == v {
 					sink[v] = sink[u]
@@ -398,14 +398,14 @@ func (s TopRight) horizontalCompaction(g LayeredGraph, root map[uint64]uint64, a
 	shift := map[uint64]int{}
 	x = map[uint64]int{}
 
-	for v := range g.NodeYX {
+	for v := range g.NodePosition {
 		sink[v] = v
 		shift[v] = math.MinInt
 	}
 
 	layers := g.Layers()
 	// root coordinates relative to sink
-	for v := range g.NodeYX {
+	for v := range g.NodePosition {
 		if root[v] == v {
 			s.placeBlock(g, x, root, align, sink, shift, delta, v, layers)
 		}
@@ -427,15 +427,15 @@ func (s TopRight) horizontalCompaction(g LayeredGraph, root map[uint64]uint64, a
 				for align[v] != root[v] {
 					v = align[v]
 					j++
-					if g.NodeYX[v][1] < len(layers[j])-1 {
-						u := layers[g.NodeYX[v][0]][g.NodeYX[v][1]+1]
+					if g.NodePosition[v].Order < len(layers[j])-1 {
+						u := layers[g.NodePosition[v].Layer][g.NodePosition[v].Order+1]
 						shifted := shift[sink[v]] + x[v] - (x[u] - delta)
 						if shifted > shift[sink[u]] {
 							shift[sink[u]] = shifted
 						}
 					}
 				}
-				k = g.NodeYX[v][1] - 1
+				k = g.NodePosition[v].Order - 1
 
 				if k < 0 || sink[v] != sink[layers[j][k]] {
 					break
@@ -445,7 +445,7 @@ func (s TopRight) horizontalCompaction(g LayeredGraph, root map[uint64]uint64, a
 	}
 
 	// absolute coordinates
-	for v := range g.NodeYX {
+	for v := range g.NodePosition {
 		x[v] += shift[sink[v]]
 	}
 
@@ -460,10 +460,10 @@ type BottomLeft struct{}
 // Blocks are stored as cyclicly linked lists, each node has reference to its lower aligned neighbor and lowest refers to topmost.
 // Each node has additional reference to root of its block.
 func (s BottomLeft) verticalAlignment(g LayeredGraph, typeOneSegments map[[2]uint64]bool, n Neighbors) (root map[uint64]uint64, align map[uint64]uint64) {
-	root = make(map[uint64]uint64, len(g.NodeYX))
-	align = make(map[uint64]uint64, len(g.NodeYX))
+	root = make(map[uint64]uint64, len(g.NodePosition))
+	align = make(map[uint64]uint64, len(g.NodePosition))
 
-	for v := range g.NodeYX {
+	for v := range g.NodePosition {
 		root[v] = v
 		align[v] = v
 	}
@@ -478,11 +478,11 @@ func (s BottomLeft) verticalAlignment(g LayeredGraph, typeOneSegments map[[2]uin
 				for m := (d - 1) / 2; m <= (d+1)/2 && m < len(downNeighbors); m++ {
 					if align[v] == v {
 						u := downNeighbors[m]
-						if !typeOneSegments[[2]uint64{v, u}] && r < g.NodeYX[u][1] {
+						if !typeOneSegments[[2]uint64{v, u}] && r < g.NodePosition[u].Order {
 							align[u] = v
 							root[v] = root[u]
 							align[v] = root[v]
-							r = g.NodeYX[u][1]
+							r = g.NodePosition[u].Order
 						}
 					}
 				}
@@ -500,8 +500,8 @@ func (s BottomLeft) placeBlock(g LayeredGraph, x map[uint64]int, root map[uint64
 		flag := true
 		w := v
 		for ; flag; flag = v != w {
-			if g.NodeYX[w][1] > 0 {
-				u := root[layers[g.NodeYX[w][0]][g.NodeYX[w][1]-1]]
+			if g.NodePosition[w].Order > 0 {
+				u := root[layers[g.NodePosition[w].Layer][g.NodePosition[w].Order-1]]
 				s.placeBlock(g, x, root, align, sink, shift, delta, u, layers)
 				if sink[v] == v {
 					sink[v] = sink[u]
@@ -541,14 +541,14 @@ func (s BottomLeft) horizontalCompaction(g LayeredGraph, root map[uint64]uint64,
 	shift := map[uint64]int{}
 	x = map[uint64]int{}
 
-	for v := range g.NodeYX {
+	for v := range g.NodePosition {
 		sink[v] = v
 		shift[v] = math.MaxInt
 	}
 
 	layers := g.Layers()
 	// root coordinates relative to sink
-	for v := range g.NodeYX {
+	for v := range g.NodePosition {
 		if root[v] == v {
 			s.placeBlock(g, x, root, align, sink, shift, delta, v, layers)
 		}
@@ -570,15 +570,15 @@ func (s BottomLeft) horizontalCompaction(g LayeredGraph, root map[uint64]uint64,
 				for align[v] != root[v] {
 					v = align[v]
 					j--
-					if g.NodeYX[v][1] > 0 {
-						u := layers[g.NodeYX[v][0]][g.NodeYX[v][1]-1]
+					if g.NodePosition[v].Order > 0 {
+						u := layers[g.NodePosition[v].Layer][g.NodePosition[v].Order-1]
 						shifted := shift[sink[v]] + x[v] - (x[u] + delta)
 						if shifted < shift[sink[u]] {
 							shift[sink[u]] = shifted
 						}
 					}
 				}
-				k = g.NodeYX[v][1] + 1
+				k = g.NodePosition[v].Order + 1
 
 				if k > len(layers[j])-1 || sink[v] != sink[layers[j][k]] {
 					break
@@ -588,7 +588,7 @@ func (s BottomLeft) horizontalCompaction(g LayeredGraph, root map[uint64]uint64,
 	}
 
 	// absolute coordinates
-	for v := range g.NodeYX {
+	for v := range g.NodePosition {
 		x[v] += shift[sink[v]]
 	}
 
@@ -603,10 +603,10 @@ type BottomRight struct{} // RIGHT UP in paper
 // Blocks are stored as cyclicly linked lists, each node has reference to its lower aligned neighbor and lowest refers to topmost.
 // Each node has additional reference to root of its block.
 func (s BottomRight) verticalAlignment(g LayeredGraph, typeOneSegments map[[2]uint64]bool, n Neighbors) (root map[uint64]uint64, align map[uint64]uint64) {
-	root = make(map[uint64]uint64, len(g.NodeYX))
-	align = make(map[uint64]uint64, len(g.NodeYX))
+	root = make(map[uint64]uint64, len(g.NodePosition))
+	align = make(map[uint64]uint64, len(g.NodePosition))
 
-	for v := range g.NodeYX {
+	for v := range g.NodePosition {
 		root[v] = v
 		align[v] = v
 	}
@@ -625,11 +625,11 @@ func (s BottomRight) verticalAlignment(g LayeredGraph, typeOneSegments map[[2]ui
 				for m := first; m >= (d-1)/2; m-- {
 					if align[v] == v {
 						u := downNeighbors[m]
-						if !typeOneSegments[[2]uint64{v, u}] && r > g.NodeYX[u][1] {
+						if !typeOneSegments[[2]uint64{v, u}] && r > g.NodePosition[u].Order {
 							align[u] = v
 							root[v] = root[u]
 							align[v] = root[v]
-							r = g.NodeYX[u][1]
+							r = g.NodePosition[u].Order
 						}
 					}
 				}
@@ -647,8 +647,8 @@ func (s BottomRight) placeBlock(g LayeredGraph, x map[uint64]int, root map[uint6
 		flag := true
 		w := v
 		for ; flag; flag = v != w {
-			if g.NodeYX[w][1] < len(layers[g.NodeYX[w][0]])-1 {
-				u := root[layers[g.NodeYX[w][0]][g.NodeYX[w][1]+1]]
+			if g.NodePosition[w].Order < len(layers[g.NodePosition[w].Layer])-1 {
+				u := root[layers[g.NodePosition[w].Layer][g.NodePosition[w].Order+1]]
 				s.placeBlock(g, x, root, align, sink, shift, delta, u, layers)
 				if sink[v] == v {
 					sink[v] = sink[u]
@@ -688,14 +688,14 @@ func (s BottomRight) horizontalCompaction(g LayeredGraph, root map[uint64]uint64
 	shift := map[uint64]int{}
 	x = map[uint64]int{}
 
-	for v := range g.NodeYX {
+	for v := range g.NodePosition {
 		sink[v] = v
 		shift[v] = math.MinInt
 	}
 
 	layers := g.Layers()
 	// root coordinates relative to sink
-	for v := range g.NodeYX {
+	for v := range g.NodePosition {
 		if root[v] == v {
 			s.placeBlock(g, x, root, align, sink, shift, delta, v, layers)
 		}
@@ -717,15 +717,15 @@ func (s BottomRight) horizontalCompaction(g LayeredGraph, root map[uint64]uint64
 				for align[v] != root[v] {
 					v = align[v]
 					j--
-					if g.NodeYX[v][1] < len(layers[j])-1 {
-						u := layers[g.NodeYX[v][0]][g.NodeYX[v][1]+1]
+					if g.NodePosition[v].Order < len(layers[j])-1 {
+						u := layers[g.NodePosition[v].Layer][g.NodePosition[v].Order+1]
 						shifted := shift[sink[v]] + x[v] - (x[u] - delta)
 						if shifted > shift[sink[u]] {
 							shift[sink[u]] = shifted
 						}
 					}
 				}
-				k = g.NodeYX[v][1] - 1
+				k = g.NodePosition[v].Order - 1
 
 				if k < 0 || sink[v] != sink[layers[j][k]] {
 					break
@@ -735,7 +735,7 @@ func (s BottomRight) horizontalCompaction(g LayeredGraph, root map[uint64]uint64
 	}
 
 	// absolute coordinates
-	for v := range g.NodeYX {
+	for v := range g.NodePosition {
 		x[v] += shift[sink[v]]
 	}
 

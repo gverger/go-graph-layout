@@ -20,7 +20,7 @@ func layersMaxHeights(g Graph, layers [][]uint64) []int {
 }
 
 func (s BasicNodesVerticalCoordinatesAssigner) NodesVerticalCoordinates(g Graph, lg LayeredGraph) map[uint64]int {
-	nodeY := make(map[uint64]int, len(lg.NodeYX))
+	nodeY := make(map[uint64]int, len(lg.NodePosition))
 
 	layers := lg.Layers()
 	layersHMax := layersMaxHeights(g, layers)

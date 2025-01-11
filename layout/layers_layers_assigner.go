@@ -5,13 +5,13 @@ import "fmt"
 // Expects that graph g does not have cycles.
 // This step creates fake nodes and splits long edges into segments.
 func NewLayeredGraph(g Graph) LayeredGraph {
-	nodeYX := assignLevels(g)
-	edges := makeEdges(g, nodeYX)
+	positions := assignLevels(g)
+	edges := makeEdges(g, positions)
 	return LayeredGraph{
-		NodeYX:   nodeYX,
-		Segments: makeSegments(edges),
-		Dummy:    makeDummy(edges),
-		Edges:    edges,
+		NodePosition: positions,
+		Segments:     makeSegments(edges),
+		Dummy:        makeDummy(edges),
+		Edges:        edges,
 	}
 }
 
@@ -28,14 +28,14 @@ func maxNodeID(g Graph) uint64 {
 	return maxNodeID
 }
 
-func assignLevels(g Graph) map[uint64][2]int {
-	nodeYX := make(map[uint64][2]int, len(g.Nodes))
+func assignLevels(g Graph) map[uint64]LayerPosition {
+	nodeYX := make(map[uint64]LayerPosition, len(g.Nodes))
 	neighbors := make(map[uint64][]uint64)
 	for e := range g.Edges {
 		neighbors[e[0]] = append(neighbors[e[0]], e[1])
 	}
 	for _, root := range g.Roots() {
-		nodeYX[root] = [2]int{0, 0}
+		nodeYX[root] = LayerPosition{}
 		for que := []uint64{root}; len(que) > 0; {
 			// pop
 			p := que[0]
@@ -47,10 +47,10 @@ func assignLevels(g Graph) map[uint64][2]int {
 
 			// set max depth for each child
 			for _, child := range neighbors[p] {
-					if l := nodeYX[p][0] + 1; l > nodeYX[child][0] {
-						nodeYX[child] = [2]int{l, 0}
-					}
-					que = append(que, child)
+				if l := nodeYX[p].Layer + 1; l > nodeYX[child].Layer {
+					nodeYX[child] = LayerPosition{Layer: l, Order: 0}
+				}
+				que = append(que, child)
 			}
 		}
 	}
@@ -96,20 +96,20 @@ func makeDummy(edges map[[2]uint64][]uint64) map[uint64]bool {
 
 // makeEdges split long edges into segments and add fake nodes
 // adds new fake nodes to nodeYX
-func makeEdges(g Graph, nodeYX map[uint64][2]int) map[[2]uint64][]uint64 {
+func makeEdges(g Graph, nodeYX map[uint64]LayerPosition) map[[2]uint64][]uint64 {
 	edges := make(map[[2]uint64][]uint64, len(g.Edges))
 
 	nextFakeNodeID := maxNodeID(g) + 1
 	for e := range g.Edges {
-		fromLayer := nodeYX[e[0]][0]
-		toLayer := nodeYX[e[1]][0]
+		fromLayer := nodeYX[e[0]].Layer
+		toLayer := nodeYX[e[1]].Layer
 
 		newEdge := []uint64{}
 		newEdge = append(newEdge, e[0])
 
 		if (toLayer - fromLayer) > 1 {
 			for layer := fromLayer + 1; layer < toLayer; layer++ {
-				nodeYX[nextFakeNodeID] = [2]int{layer, 0}
+				nodeYX[nextFakeNodeID] = LayerPosition{Layer: layer, Order: 0}
 				newEdge = append(newEdge, nextFakeNodeID)
 				nextFakeNodeID++
 			}

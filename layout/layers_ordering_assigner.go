@@ -66,7 +66,7 @@ func (o WarfieldOrderingOptimizer) Optimize(g Graph, lg LayeredGraph) {
 	// store to graph
 	for y, layer := range bestLayers {
 		for x, node := range layer {
-			lg.NodeYX[node] = [2]int{y, x}
+			lg.NodePosition[node] = LayerPosition{Layer: y, Order: x}
 		}
 	}
 }
