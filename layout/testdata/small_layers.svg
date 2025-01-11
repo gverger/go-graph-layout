@@ -3,340 +3,34 @@
 
 </defs>
 <g id="graph-root">
-<polyline style="fill:none;stroke-width:1;stroke:black;" points="501,95 346,138"></polyline>
-<polyline style="fill:none;stroke-width:1;stroke:black;" points="169,52 175,83 346,138"></polyline>
-<polyline style="fill:none;stroke-width:1;stroke:black;" points="169,52 325,95"></polyline>
-<polyline style="fill:none;stroke-width:1;stroke:black;" points="129,9 7,52"></polyline>
-<polyline style="fill:none;stroke-width:1;stroke:black;" points="129,9 169,52"></polyline>
-<polyline style="fill:none;stroke-width:1;stroke:black;" points="501,95 418,138"></polyline>
-<polyline style="fill:none;stroke-width:1;stroke:black;" points="169,52 57,95"></polyline>
-<polyline style="fill:none;stroke-width:1;stroke:black;" points="169,52 118,95"></polyline>
-<polyline style="fill:none;stroke-width:1;stroke:black;" points="169,52 114,95"></polyline>
-<polyline style="fill:none;stroke-width:1;stroke:black;" points="169,52 289,95"></polyline>
-<polyline style="fill:none;stroke-width:1;stroke:black;" points="169,52 200,83 346,138"></polyline>
-<polyline style="fill:none;stroke-width:1;stroke:black;" points="169,52 501,95"></polyline>
-<polyline style="fill:none;stroke-width:1;stroke:black;" points="501,95 357,138"></polyline>
-<polyline style="fill:none;stroke-width:1;stroke:black;" points="169,52 178,95"></polyline>
-<polyline style="fill:none;stroke-width:1;stroke:black;" points="129,9 410,52"></polyline>
-<polyline style="fill:none;stroke-width:1;stroke:black;" points="129,9 325,40 325,83 357,138"></polyline>
-<polyline style="fill:none;stroke-width:1;stroke:black;" points="129,9 389,52"></polyline>
-<polyline style="fill:none;stroke-width:1;stroke:black;" points="169,52 150,95"></polyline>
-<polyline style="fill:none;stroke-width:1;stroke:black;" points="169,52 250,83 385,138"></polyline>
-<polyline style="fill:none;stroke-width:1;stroke:black;" points="169,52 96,95"></polyline>
-<polyline style="fill:none;stroke-width:1;stroke:black;" points="501,95 346,138"></polyline>
-<polyline style="fill:none;stroke-width:1;stroke:black;" points="129,9 350,40 501,95"></polyline>
-<polyline style="fill:none;stroke-width:1;stroke:black;" points="501,95 385,138"></polyline>
-<polyline style="fill:none;stroke-width:1;stroke:black;" points="501,95 443,138"></polyline>
-<polyline style="fill:none;stroke-width:1;stroke:black;" points="169,52 225,83 357,138"></polyline>
+<polyline style="fill:none;stroke-width:1;stroke:black;" points="-75,95 -162,138"></polyline>
+<polyline style="fill:none;stroke-width:1;stroke:black;" points="-175,9 -262,52"></polyline>
+<polyline style="fill:none;stroke-width:1;stroke:black;" points="-212,52 -175,95"></polyline>
+<polyline style="fill:none;stroke-width:1;stroke:black;" points="-212,52 -75,95"></polyline>
+<polyline style="fill:none;stroke-width:1;stroke:black;" points="-175,9 -87,52 -75,95"></polyline>
+<polyline style="fill:none;stroke-width:1;stroke:black;" points="-212,52 -225,95"></polyline>
+<polyline style="fill:none;stroke-width:1;stroke:black;" points="-175,9 -212,52"></polyline>
+<polyline style="fill:none;stroke-width:1;stroke:black;" points="-75,95 -25,138"></polyline>
+<polyline style="fill:none;stroke-width:1;stroke:black;" points="-212,52 -350,95"></polyline>
+<polyline style="fill:none;stroke-width:1;stroke:black;" points="-212,52 -325,95"></polyline>
+<polyline style="fill:none;stroke-width:1;stroke:black;" points="-175,9 -237,52"></polyline>
+<polyline style="fill:none;stroke-width:1;stroke:black;" points="-212,52 -100,95 -112,138"></polyline>
+<polyline style="fill:none;stroke-width:1;stroke:black;" points="-212,52 -200,95"></polyline>
+<polyline style="fill:none;stroke-width:1;stroke:black;" points="-75,95 -112,138"></polyline>
+<polyline style="fill:none;stroke-width:1;stroke:black;" points="-212,52 -300,95"></polyline>
+<polyline style="fill:none;stroke-width:1;stroke:black;" points="-75,95 0,138"></polyline>
+<polyline style="fill:none;stroke-width:1;stroke:black;" points="-175,9 -287,52"></polyline>
+<polyline style="fill:none;stroke-width:1;stroke:black;" points="-75,95 -50,138"></polyline>
+<polyline style="fill:none;stroke-width:1;stroke:black;" points="-212,52 -125,95 -137,138"></polyline>
+<polyline style="fill:none;stroke-width:1;stroke:black;" points="-212,52 -50,95 -50,138"></polyline>
+<polyline style="fill:none;stroke-width:1;stroke:black;" points="-212,52 -275,95"></polyline>
+<polyline style="fill:none;stroke-width:1;stroke:black;" points="-212,52 -150,95 -162,138"></polyline>
+<polyline style="fill:none;stroke-width:1;stroke:black;" points="-175,9 -12,52 -12,95 -50,138"></polyline>
+<polyline style="fill:none;stroke-width:1;stroke:black;" points="-212,52 -250,95"></polyline>
+<polyline style="fill:none;stroke-width:1;stroke:black;" points="-75,95 -137,138"></polyline>
 
 		<g>
-			<foreignObject x="275" y="86" width="38" height="28">
-				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
-					
-		<div id="svg:graph:node:title:13" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
-			sort
-		</div>
-					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
-			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
-			
-			</table>
-		</div>
-		
-				</div>
-			</foreignObject>
-		</g>
-		
-
-		<g>
-			<foreignObject x="50" y="86" width="103" height="28">
-				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
-					
-		<div id="svg:graph:node:title:16" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
-			text/template
-		</div>
-					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
-			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
-			
-			</table>
-		</div>
-		
-				</div>
-			</foreignObject>
-		</g>
-		
-
-		<g>
-			<foreignObject x="350" y="129" width="24" height="28">
-				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
-					
-		<div id="svg:graph:node:title:7" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
-			io
-		</div>
-					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
-			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
-			
-			</table>
-		</div>
-		
-				</div>
-			</foreignObject>
-		</g>
-		
-
-		<g>
-			<foreignObject x="400" y="43" width="31" height="28">
-				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
-					
-		<div id="svg:graph:node:title:19" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
-			log
-		</div>
-					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
-			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
-			
-			</table>
-		</div>
-		
-				</div>
-			</foreignObject>
-		</g>
-		
-
-		<g>
-			<foreignObject x="0" y="43" width="24" height="28">
-				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
-					
-		<div id="svg:graph:node:title:20" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
-			os
-		</div>
-					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
-			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
-			
-			</table>
-		</div>
-		
-				</div>
-			</foreignObject>
-		</g>
-		
-
-		<g>
-			<foreignObject x="300" y="129" width="103" height="28">
-				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
-					
-		<div id="svg:graph:node:title:4" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
-			encoding/json
-		</div>
-					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
-			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
-			
-			</table>
-		</div>
-		
-				</div>
-			</foreignObject>
-		</g>
-		
-
-		<g>
-			<foreignObject x="375" y="129" width="31" height="28">
-				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
-					
-		<div id="svg:graph:node:title:6" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
-			fmt
-		</div>
-					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
-			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
-			
-			</table>
-		</div>
-		
-				</div>
-			</foreignObject>
-		</g>
-		
-
-		<g>
-			<foreignObject x="125" y="86" width="60" height="28">
-				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
-					
-		<div id="svg:graph:node:title:15" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
-			strings
-		</div>
-					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
-			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
-			
-			</table>
-		</div>
-		
-				</div>
-			</foreignObject>
-		</g>
-		
-
-		<g>
-			<foreignObject x="0" y="0" width="269" height="28">
-				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
-					
-		<div id="svg:graph:node:title:17" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
-			github.com/nikolaydubina/jsonl-graph
-		</div>
-					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
-			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
-			
-			</table>
-		</div>
-		
-				</div>
-			</foreignObject>
-		</g>
-		
-
-		<g>
-			<foreignObject x="100" y="86" width="46" height="28">
-				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
-					
-		<div id="svg:graph:node:title:9" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
-			embed
-		</div>
-					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
-			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
-			
-			</table>
-		</div>
-		
-				</div>
-			</foreignObject>
-		</g>
-		
-
-		<g>
-			<foreignObject x="375" y="43" width="38" height="28">
-				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
-					
-		<div id="svg:graph:node:title:18" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
-			flag
-		</div>
-					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
-			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
-			
-			</table>
-		</div>
-		
-				</div>
-			</foreignObject>
-		</g>
-		
-
-		<g>
-			<foreignObject x="325" y="129" width="53" height="28">
-				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
-					
-		<div id="svg:graph:node:title:5" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
-			errors
-		</div>
-					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
-			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
-			
-			</table>
-		</div>
-		
-				</div>
-			</foreignObject>
-		</g>
-		
-
-		<g>
-			<foreignObject x="150" y="86" width="67" height="28">
-				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
-					
-		<div id="svg:graph:node:title:12" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
-			net/http
-		</div>
-					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
-			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
-			
-			</table>
-		</div>
-		
-				</div>
-			</foreignObject>
-		</g>
-		
-
-		<g>
-			<foreignObject x="25" y="86" width="74" height="28">
-				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
-					
-		<div id="svg:graph:node:title:11" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
-			io/ioutil
-		</div>
-					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
-			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
-			
-			</table>
-		</div>
-		
-				</div>
-			</foreignObject>
-		</g>
-		
-
-		<g>
-			<foreignObject x="350" y="86" width="312" height="28">
-				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
-					
-		<div id="svg:graph:node:title:1" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
-			github.com/nikolaydubina/jsonl-graph/graph
-		</div>
-					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
-			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
-			
-			</table>
-		</div>
-		
-				</div>
-			</foreignObject>
-		</g>
-		
-
-		<g>
-			<foreignObject x="300" y="86" width="60" height="28">
-				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
-					
-		<div id="svg:graph:node:title:14" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
-			strconv
-		</div>
-					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
-			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
-			
-			</table>
-		</div>
-		
-				</div>
-			</foreignObject>
-		</g>
-		
-
-		<g>
-			<foreignObject x="400" y="129" width="46" height="28">
-				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
-					
-		<div id="svg:graph:node:title:2" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
-			bufio
-		</div>
-					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
-			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
-			
-			</table>
-		</div>
-		
-				</div>
-			</foreignObject>
-		</g>
-		
-
-		<g>
-			<foreignObject x="425" y="129" width="46" height="28">
+			<foreignObject x="-43" y="129" width="46" height="28">
 				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
 					
 		<div id="svg:graph:node:title:3" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
@@ -354,7 +48,187 @@
 		
 
 		<g>
-			<foreignObject x="25" y="43" width="298" height="28">
+			<foreignObject x="-200" y="86" width="60" height="28">
+				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
+					
+		<div id="svg:graph:node:title:14" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
+			strconv
+		</div>
+					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
+			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
+			
+			</table>
+		</div>
+		
+				</div>
+			</foreignObject>
+		</g>
+		
+
+		<g>
+			<foreignObject x="-304" y="0" width="269" height="28">
+				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
+					
+		<div id="svg:graph:node:title:17" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
+			github.com/nikolaydubina/jsonl-graph
+		</div>
+					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
+			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
+			
+			</table>
+		</div>
+		
+				</div>
+			</foreignObject>
+		</g>
+		
+
+		<g>
+			<foreignObject x="-272" y="43" width="31" height="28">
+				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
+					
+		<div id="svg:graph:node:title:19" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
+			log
+		</div>
+					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
+			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
+			
+			</table>
+		</div>
+		
+				</div>
+			</foreignObject>
+		</g>
+		
+
+		<g>
+			<foreignObject x="-226" y="86" width="312" height="28">
+				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
+					
+		<div id="svg:graph:node:title:1" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
+			github.com/nikolaydubina/jsonl-graph/graph
+		</div>
+					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
+			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
+			
+			</table>
+		</div>
+		
+				</div>
+			</foreignObject>
+		</g>
+		
+
+		<g>
+			<foreignObject x="-158" y="129" width="53" height="28">
+				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
+					
+		<div id="svg:graph:node:title:5" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
+			errors
+		</div>
+					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
+			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
+			
+			</table>
+		</div>
+		
+				</div>
+			</foreignObject>
+		</g>
+		
+
+		<g>
+			<foreignObject x="-321" y="86" width="103" height="28">
+				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
+					
+		<div id="svg:graph:node:title:16" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
+			text/template
+		</div>
+					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
+			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
+			
+			</table>
+		</div>
+		
+				</div>
+			</foreignObject>
+		</g>
+		
+
+		<g>
+			<foreignObject x="-378" y="86" width="67" height="28">
+				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
+					
+		<div id="svg:graph:node:title:12" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
+			net/http
+		</div>
+					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
+			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
+			
+			</table>
+		</div>
+		
+				</div>
+			</foreignObject>
+		</g>
+		
+
+		<g>
+			<foreignObject x="-251" y="43" width="38" height="28">
+				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
+					
+		<div id="svg:graph:node:title:18" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
+			flag
+		</div>
+					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
+			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
+			
+			</table>
+		</div>
+		
+				</div>
+			</foreignObject>
+		</g>
+		
+
+		<g>
+			<foreignObject x="-294" y="43" width="24" height="28">
+				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
+					
+		<div id="svg:graph:node:title:20" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
+			os
+		</div>
+					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
+			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
+			
+			</table>
+		</div>
+		
+				</div>
+			</foreignObject>
+		</g>
+		
+
+		<g>
+			<foreignObject x="-208" y="129" width="103" height="28">
+				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
+					
+		<div id="svg:graph:node:title:4" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
+			encoding/json
+		</div>
+					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
+			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
+			
+			</table>
+		</div>
+		
+				</div>
+			</foreignObject>
+		</g>
+		
+
+		<g>
+			<foreignObject x="-356" y="43" width="298" height="28">
 				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
 					
 		<div id="svg:graph:node:title:8" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
@@ -372,11 +246,137 @@
 		
 
 		<g>
-			<foreignObject x="75" y="86" width="89" height="28">
+			<foreignObject x="-264" y="86" width="38" height="28">
+				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
+					
+		<div id="svg:graph:node:title:13" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
+			sort
+		</div>
+					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
+			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
+			
+			</table>
+		</div>
+		
+				</div>
+			</foreignObject>
+		</g>
+		
+
+		<g>
+			<foreignObject x="-250" y="86" width="60" height="28">
+				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
+					
+		<div id="svg:graph:node:title:15" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
+			strings
+		</div>
+					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
+			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
+			
+			</table>
+		</div>
+		
+				</div>
+			</foreignObject>
+		</g>
+		
+
+		<g>
+			<foreignObject x="-339" y="86" width="89" height="28">
 				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
 					
 		<div id="svg:graph:node:title:10" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
 			image/color
+		</div>
+					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
+			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
+			
+			</table>
+		</div>
+		
+				</div>
+			</foreignObject>
+		</g>
+		
+
+		<g>
+			<foreignObject x="-122" y="129" width="31" height="28">
+				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
+					
+		<div id="svg:graph:node:title:6" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
+			fmt
+		</div>
+					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
+			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
+			
+			</table>
+		</div>
+		
+				</div>
+			</foreignObject>
+		</g>
+		
+
+		<g>
+			<foreignObject x="-18" y="129" width="46" height="28">
+				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
+					
+		<div id="svg:graph:node:title:2" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
+			bufio
+		</div>
+					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
+			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
+			
+			</table>
+		</div>
+		
+				</div>
+			</foreignObject>
+		</g>
+		
+
+		<g>
+			<foreignObject x="-357" y="86" width="74" height="28">
+				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
+					
+		<div id="svg:graph:node:title:11" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
+			io/ioutil
+		</div>
+					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
+			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
+			
+			</table>
+		</div>
+		
+				</div>
+			</foreignObject>
+		</g>
+		
+
+		<g>
+			<foreignObject x="-57" y="129" width="24" height="28">
+				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
+					
+		<div id="svg:graph:node:title:7" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
+			io
+		</div>
+					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
+			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
+			
+			</table>
+		</div>
+		
+				</div>
+			</foreignObject>
+		</g>
+		
+
+		<g>
+			<foreignObject x="-218" y="86" width="46" height="28">
+				<div xmlns="http://www.w3.org/1999/xhtml" class="unselectable" style="overflow: hidden; background: white; border: 1px solid lightgray; border-radius: 5px;">
+					
+		<div id="svg:graph:node:title:9" style="font-size: 9px; text-align: center; padding: 4px; cursor: pointer;">
+			embed
 		</div>
 					<div style="font-size: 9px; padding: 0px 4px 4px 4px; border-top: 1px solid lightgrey;">
 			<table border="0" cellspacing="0" cellpadding="1" style="width: 100%;">
