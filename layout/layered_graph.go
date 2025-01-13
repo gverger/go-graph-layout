@@ -40,15 +40,11 @@ func (g LayeredGraph) Layers() [][]uint64 {
 	}
 
 	layers := make([][]uint64, maxLayer+1)
-	for layerIdx := 0; layerIdx < len(layers); layerIdx++ {
-		// collect to layer
-		for node, position := range g.NodePosition {
-			if position.Layer == layerIdx {
-				layers[layerIdx] = append(layers[layerIdx], node)
-			}
-		}
+	for node, position := range g.NodePosition {
+		layers[position.Layer] = append(layers[position.Layer], node)
+	}
 
-		// sort within layer
+	for layerIdx := 0; layerIdx < len(layers); layerIdx++ {
 		sort.Slice(layers[layerIdx], func(i, j int) bool {
 			return g.NodePosition[layers[layerIdx][i]].IsLeftOf(g.NodePosition[layers[layerIdx][j]])
 		})
