@@ -1,4 +1,4 @@
-module github.com/nikolaydubina/go-graph-layout
+module github.com/gverger/go-graph-layout
 
 go 1.22
 

@@ -9,8 +9,8 @@ import (
 
 	"github.com/nikolaydubina/jsonl-graph/graph"
 
-	"github.com/nikolaydubina/go-graph-layout/layout"
-	"github.com/nikolaydubina/go-graph-layout/svg"
+	"github.com/gverger/go-graph-layout/layout"
+	"github.com/gverger/go-graph-layout/svg"
 )
 
 func parseJSONLGraph(in string) (*graph.Graph, *layout.Graph, error) {
