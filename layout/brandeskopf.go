@@ -12,7 +12,8 @@ import (
 // Works on fully connected graphs.
 // Assuming nodes do not have width.
 type BrandesKopfLayersNodesHorizontalAssigner struct {
-	Delta int // distance between nodes, including fake ones
+	Delta       int  // distance between nodes, including fake ones
+	TopDownOnly bool // true if running the 2 top down strategies only (better for trees)
 }
 
 type Neighbors struct {
@@ -56,8 +57,12 @@ func (s BrandesKopfLayersNodesHorizontalAssigner) NodesHorizontalCoordinates(_ G
 
 	resTL := runAlgo(TopLeft{}, g, typeOneSegments, neighbors, s)
 	resTR := runAlgo(TopRight{}, g, typeOneSegments, neighbors, s)
-	resBL := runAlgo(BottomLeft{}, g, typeOneSegments, neighbors, s)
-	resBR := runAlgo(BottomRight{}, g, typeOneSegments, neighbors, s)
+	resBL := resTL
+	resBR := resTR
+	if !s.TopDownOnly {
+		resBL = runAlgo(BottomLeft{}, g, typeOneSegments, neighbors, s)
+		resBR = runAlgo(BottomRight{}, g, typeOneSegments, neighbors, s)
+	}
 
 	best := resTL
 	if resTR.width() < best.width() {
